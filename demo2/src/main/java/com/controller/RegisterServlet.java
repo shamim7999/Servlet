@@ -12,7 +12,7 @@ import jakarta.servlet.http.*;
 public class RegisterServlet extends HttpServlet{
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        RequestDispatcher rd = req.getRequestDispatcher("dispatchedservlet");
+        RequestDispatcher rd = req.getRequestDispatcher("dispatchedservlet"); //// ------> url pattern
         rd.forward(req, resp);
     }
 }
