@@ -15,25 +15,22 @@ public class MySql {
     public void sendData() {
         try {
             Class.forName(driver);
-        } catch(ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
-        try {
             Connection conn = DriverManager.getConnection(url, userName, password);
             System.out.println("Connected Succesfully");
-            String myQuery = "INSERT INTO person (name, course, age, email) VALUES (?, ?, ?, ?)";
-            try {
-                PreparedStatement ps = conn.prepareStatement(myQuery);
-                ps.setString(1, name);
-                ps.setString(2, course);
-                ps.setString(3, age);
-                ps.setString(4, email);
-                ps.executeUpdate();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            String myQuery = "INSERT INTO person (name, course, age, email) VALUES (?, ?, ?, ?)";
+            PreparedStatement ps = conn.prepareStatement(myQuery);
+
+            ps.setString(1, name);
+            ps.setString(2, course);
+            ps.setString(3, age);
+            ps.setString(4, email);
+
+            ps.executeUpdate();
+
+        } catch(ClassNotFoundException e) {
+            e.printStackTrace();
         } catch(SQLException e) {
             e.printStackTrace();
         }
