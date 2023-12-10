@@ -7,14 +7,18 @@
     <!-- Servlet Configuration -->
     <servlet>
         <servlet-name>helloservlet</servlet-name>
-        <servlet-class>com.demo2.HelloServlet</servlet-class>
+        <servlet-class>com.controller.HelloServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>registerservlet</servlet-name>
-        <servlet-class>com.demo2.RegisterServlet</servlet-class>
+        <servlet-class>com.controller.RegisterServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>dispatchedservlet</servlet-name>
+        <servlet-class>com.controller.DispatchedServlet</servlet-class>
+    </servlet>
 
     <!-- Servlet Mapping -->
 
@@ -26,5 +30,10 @@
     <servlet-mapping>
         <servlet-name>registerservlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>dispatchedservlet</servlet-name>
+        <url-pattern>/dispatchedservlet</url-pattern>
     </servlet-mapping>
 </web-app>

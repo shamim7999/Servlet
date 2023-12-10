@@ -1,27 +1,18 @@
-package com.demo2;
+package com.dao;
 
-import java.io.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
-
-//@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class RegisterServlet extends HttpServlet{
-    private static final  String driver = "com.mysql.cj.jdbc.Driver";
+public class MySql {
+    private static final String driver = "com.mysql.cj.jdbc.Driver";
     private static final String url = "jdbc:mysql://localhost:3306/shamim";
     private static final String userName = "root";
     private static final String password = "";
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
 
-        String name = req.getParameter("user_name");
-        String course = req.getParameter("user_course");
-        String email = req.getParameter("user_email");
-        String age = req.getParameter("user_age");
-
+    String name, email, course, age;
+    public void sendData() {
         try {
             Class.forName(driver);
         } catch(ClassNotFoundException e) {
@@ -40,11 +31,6 @@ public class RegisterServlet extends HttpServlet{
                 ps.setString(4, email);
                 ps.executeUpdate();
 
-                out.println("<html><body>");
-                out.println("<h1>"+name+"</h1>");
-                out.println("<h1>"+course+"</h1>");
-                out.println("Inserted Successfully</body></html>");
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -52,4 +38,12 @@ public class RegisterServlet extends HttpServlet{
             e.printStackTrace();
         }
     }
+    public MySql(String name, String email, String course, String age) {
+        this.name = name;
+        this.email = email;
+        this.course = course;
+        this.age = age;
+        sendData();
+    }
+
 }
